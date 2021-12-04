@@ -1,0 +1,30 @@
+global:
+  scrape_interval: 60s
+  evaluation_interval: 60s
+scrape_configs:
+  - job_name: 'internet-performance@direct'
+    metrics_path: '/probe'
+    params:
+      module: [direct]
+    static_configs:
+      - targets:
+          - https://www.google.ch/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png
+          - https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js
+          - https://www.cloudflare.com/img/performance/diagram-heavy-webpage.svg
+          - https://static.daydeal.ch/2.17.10/images/logo-top.png
+          - https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg
+          - https://www.20min.ch/icons/20min_de.png
+          - https://www.nzz.ch/
+          - https://www.golem.de/
+          - https://www.facebook.com/
+          - https://stackoverflow.com/
+          - https://www.npmjs.com/
+          - https://www.docker.com/
+          - http://httpforever.com/
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: prometheus-exporter:9115

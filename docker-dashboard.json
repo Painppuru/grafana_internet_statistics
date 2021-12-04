@@ -1,0 +1,535 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 1,
+    "iteration": 1638624913214,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 5,
+        "panels": [],
+        "title": "Overview",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "description": "",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "hiddenSeries": false,
+        "id": 51,
+        "legend": {
+          "avg": true,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxPerRow": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.3.0",
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "repeatDirection": "h",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "ET2Nx7mgk"
+            },
+            "exemplar": true,
+            "expr": "sum(label_replace(sum(probe_http_duration_seconds{instance=~\"$probe_target\", job=~\"internet-performance@($probe_host)\", phase!~\"$phase_exclude\"}) without (phase) < $metric_cutoff, \"proxy\", \"$1\", \"job\", \"internet-performance@(.*)\")) by (proxy)",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{ proxy }}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "Request Duration - Total",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "label": "",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "description": "",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 10
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "avg": true,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxPerRow": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.3.0",
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "repeat": "probe_target",
+        "repeatDirection": "h",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "ET2Nx7mgk"
+            },
+            "exemplar": true,
+            "expr": "label_replace(sum(probe_http_duration_seconds{instance=~\"$probe_target\", job=~\"internet-performance@($probe_host)\", phase!~\"$phase_exclude\"}) without (phase) < $metric_cutoff, \"proxy\", \"$1\", \"job\", \"internet-performance@(.*)\")",
+            "format": "time_series",
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{ proxy }}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "Request Duration - $probe_target",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "label": "",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 127
+        },
+        "id": 7,
+        "panels": [],
+        "repeat": "probe_host",
+        "title": "Drilldown: $probe_host",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "ET2Nx7mgk"
+        },
+        "description": "",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 128
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "legend": {
+          "avg": true,
+          "current": false,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "maxPerRow": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.3.0",
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "repeat": "probe_target",
+        "repeatDirection": "h",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "probe_http_duration_seconds{instance=~\"$probe_target\", job=\"internet-performance@$probe_host\", phase!~\"$phase_exclude\"} < $metric_cutoff",
+            "format": "time_series",
+            "hide": false,
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{ phase}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "Request Drilldown - $probe_target @ $probe_host",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "label": "",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 33,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ET2Nx7mgk"
+          },
+          "definition": "label_values(probe_success, job)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Probe Host (Internal)",
+          "multi": true,
+          "name": "probe_host",
+          "options": [],
+          "query": {
+            "query": "label_values(probe_success, job)",
+            "refId": "Prometheus-probe_host-Variable-Query"
+          },
+          "refresh": 1,
+          "regex": "/internet-performance@(.*)/",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": ".+",
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ET2Nx7mgk"
+          },
+          "definition": "label_values(probe_success, instance)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Probe Target",
+          "multi": true,
+          "name": "probe_target",
+          "options": [],
+          "query": {
+            "query": "label_values(probe_success, instance)",
+            "refId": "Prometheus-probe_target-Variable-Query"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": "inf",
+            "value": "inf"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Metric Cutoff",
+          "multi": false,
+          "name": "metric_cutoff",
+          "options": [
+            {
+              "selected": true,
+              "text": "inf",
+              "value": "inf"
+            },
+            {
+              "selected": false,
+              "text": "4",
+              "value": "4"
+            },
+            {
+              "selected": false,
+              "text": "3",
+              "value": "3"
+            },
+            {
+              "selected": false,
+              "text": "2",
+              "value": "2"
+            },
+            {
+              "selected": false,
+              "text": "1",
+              "value": "1"
+            }
+          ],
+          "query": "inf,4,3,2,1",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "resolve"
+            ],
+            "value": [
+              "resolve"
+            ]
+          },
+          "hide": 0,
+          "includeAll": false,
+          "label": "Excluded Phases",
+          "multi": true,
+          "name": "phase_exclude",
+          "options": [
+            {
+              "selected": false,
+              "text": "connect",
+              "value": "connect"
+            },
+            {
+              "selected": false,
+              "text": "processing",
+              "value": "processing"
+            },
+            {
+              "selected": true,
+              "text": "resolve",
+              "value": "resolve"
+            },
+            {
+              "selected": false,
+              "text": "tls",
+              "value": "tls"
+            },
+            {
+              "selected": false,
+              "text": "transfer",
+              "value": "transfer"
+            }
+          ],
+          "query": "connect,processing,resolve,tls,transfer",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "Internet statistics",
+    "uid": "tbwxx7mRk",
+    "version": 2,
+    "weekStart": ""
+}

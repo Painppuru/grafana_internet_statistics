@@ -1,0 +1,7 @@
+modules:
+    direct:
+      prober: http
+      timeout: 30s
+      http:
+        #proxy_url: http://10.134.8.110:3128
+        preferred_ip_protocol: ip4
